@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>註冊</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="registerForm" (ngSubmit)="signUp()">
+    <ion-item>
+      <ion-label position="stacked">電子郵件</ion-label>
+      <ion-input required type="email" placeholder="電子郵件" formControlName="email">
+      </ion-input>
+    </ion-item>
+    <ion-item *ngIf="formErrors.email">
+      <ion-text color="danger">
+        <p>{{ formErrors.email }}</p>
+      </ion-text>
+    </ion-item>
+    <div formGroupName="passwordGroup">
+      <ion-item>
+        <ion-label position="stacked">密碼</ion-label>
+        <ion-input required type="password" placeholder="6~15個英數字組合" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="formErrors.password">
+        <ion-text color="danger">
+          <p>{{ formErrors.password }}</p>
+        </ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">確認密碼</ion-label>
+        <ion-input required type="password" placeholder="再次輸入密碼" formControlName="confirmPassword"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="formErrors.confirmPassword">
+        <ion-text color="danger">
+          <p>{{ formErrors.confirmPassword }}</p>
+        </ion-text>
+      </ion-item>
+      <ion-item *ngIf="formErrors.matchPassword">
+        <ion-text color="danger">
+          <p>{{ formErrors.matchPassword }}</p>
+        </ion-text>
+      </ion-item>
+    </div>
+    <ion-item>
+      <ion-label position="stacked">暱稱</ion-label>
+      <ion-input required type="text" placeholder="長度3~32字暱稱" formControlName="displayName">
+      </ion-input>
+    </ion-item>
+    <ion-item *ngIf="formErrors.displayName">
+      <ion-text color="danger">
+        <p>{{ formErrors.displayName }}</p>
+      </ion-text>
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col text-center>
+          <ion-button type="submit" fill="outline"  color="danger" [disabled]="!registerForm.valid">
+            註冊新帳號
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
